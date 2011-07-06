@@ -38,6 +38,7 @@ endif;
 <script type="text/javascript">
   $(function() {
     $('#calendar').fullCalendar({
+      contentHeight: 154,
       events: $.fullCalendar.gcalFeed('<?php echo $feed;?>'),
       eventClick: function(event) {
         // opens events in a popup window
