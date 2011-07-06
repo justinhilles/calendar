@@ -22,64 +22,70 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-class Calendar{
+class Calendar
+{
 	
-	var $vars;
-	var $table = 'wp_calendar';
-	
-	public function __construct()
-	{
-		register_activation_hook(__FILE__, array($this,'install'));
-		$this->PLUGINPATH = trailingslashit(WP_PLUGIN_DIR .'/'. dirname(plugin_basename(__FILE__)));
-		$this->PLUGINURL  = '/' . PLUGINDIR .'/'. dirname(plugin_basename(__FILE__));
-		$this -> vars = $_REQUEST;
-		$this -> init();
-	}
+  var $vars;
+  var $table = 'wp_calendar';
 
-	public function init()
-	{	
-		if($this->version_check()):
-			if(is_admin()):
-				add_action('admin_menu',          array(&$this, 'admin_menu'      ));
-				add_action('admin_init',					array(&$this, 'admin_controller'));
-			else:
-				add_action('wp_print_scripts',    array(&$this, 'public_scripts'  ));
-				add_action('wp_print_styles',     array(&$this, 'public_styles'   ));
-				add_shortcode('calendar', 				array(&$this, 'shortcode'       ));
-			endif;
-		endif;	
-	}
+  public function __construct()
+  {
+    register_activation_hook(__FILE__, array($this,'install'));
+    $this->PLUGINPATH = trailingslashit(WP_PLUGIN_DIR .'/'. dirname(plugin_basename(__FILE__)));
+    $this->PLUGINURL  = '/' . PLUGINDIR .'/'. dirname(plugin_basename(__FILE__));
+    $this -> vars = $_REQUEST;
+    $this -> init();
+  }
+
+  public function init()
+  {
+    if($this->version_check())
+    {
+      if(is_admin())
+      {
+        add_action('admin_menu', array(&$this, 'admin_menu'));
+        add_action('admin_init', array(&$this, 'admin_controller'));
+      }
+      else
+      {
+        add_action('wp_print_scripts', array(&$this, 'public_scripts'));
+        add_action('wp_print_styles', array(&$this, 'public_styles'));
+        add_shortcode('calendar', array(&$this, 'shortcode'));
+      }
+    }
+  }
 	
-	public function install()
-	{				
-		ob_start();
-		include(dirname(__FILE__) . '/lib/data/database.sql.php');
-		$sql = ob_get_contents();
-		ob_end_clean();
-		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-		dbDelta($sql);
-	}
+  public function install()
+  {
+    ob_start();
+    include(dirname(__FILE__) . '/lib/data/database.sql.php');
+    $sql = ob_get_contents();
+    ob_end_clean();
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+  }
 	
-	public function version_check()
-	{
-		global $wp_version;
-		if(version_compare($wp_version,"2.5","<"))
-		{
-			exit($this->EXTMSG);
-		}
-		return true;	
-	}
+  public function version_check()
+  {
+    global $wp_version;
+    if(version_compare($wp_version,"2.5","<"))
+    {
+      exit($this->EXTMSG);
+    }
+    return true;
+  }
 	
-	function getData()
-	{
-		if(isset($_POST['data'])){
-			$this->fields = $this -> showColumns($this->table);
-			$this->data = array_intersect_key( $_REQUEST['data'] , $this->fields );
-			$this -> data['begin'] = $this -> formatDateTime($_REQUEST['datebegin'], $_REQUEST['timebegin']);
-			$this -> data['end'] = $this -> formatDateTime($_REQUEST['dateend'], $_REQUEST['timeend']);
-			return $this->data;
-		}	
-	}
+  public function getData()
+  {
+    if(isset($_POST['data']))
+    {
+      $this->fields = $this -> showColumns($this->table);
+      $this->data = array_intersect_key( $_REQUEST['data'] , $this->fields );
+      $this -> data['begin'] = $this -> formatDateTime($_REQUEST['datebegin'], $_REQUEST['timebegin']);
+      $this -> data['end'] = $this -> formatDateTime($_REQUEST['dateend'], $_REQUEST['timeend']);
+      return $this->data;
+    }
+  }
 	
 	function showColumns( $table ){
 		global $wpdb;
@@ -242,12 +248,15 @@ class Calendar{
 	
 	public function shortcode( $atts = array(), $content = null, $code = null)
 	{
-		
+		$template = 'calendar';
 		if(is_array($atts))
 		{
-			extract($atts);
+                  extract($atts);
 		}
-		include('template/calendar.php');
+                if(file_exists(sprintf(dirname(__FILE__).'/template/%s.php',$template)))
+                {
+                  include(sprintf(dirname(__FILE__).'/template/%s.php',$template));
+                }
 		
 	}
 }
