@@ -29,7 +29,6 @@ endif;
 
 <?php if(!isset($hide_calendar)):?>
 <div id='calendar'></div>
-<!--<script type="text/javascript" src="<?php echo bloginfo('siteurl') . $this -> PLUGINURL; ?>/public/plugins/fullcalendar/jquery/jquery.js"></script>-->
 <script type="text/javascript" src="<?php echo bloginfo('siteurl') . $this -> PLUGINURL; ?>/public/plugins/fullcalendar/jquery/ui.core.js"></script>
 <script type="text/javascript" src="<?php echo bloginfo('siteurl') . $this -> PLUGINURL; ?>/public/plugins/fullcalendar/jquery/ui.draggable.js"></script>
 <script type="text/javascript" src="<?php echo bloginfo('siteurl') . $this -> PLUGINURL; ?>/public/plugins/fullcalendar/jquery/ui.resizable.js"></script>
