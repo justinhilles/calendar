@@ -1,5 +1,6 @@
 <?php
 require_once( '../../../../wp-load.php' );
+
 global $Calendar, $wpdb;
 if(isset($_GET['id']))
 {
