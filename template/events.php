@@ -6,13 +6,12 @@ require_once dirname(__FILE__).'/../lib/simplepie-gcalendar.php';
 // Get a SimplePie feed object from the specified feed source.
 $rss = new SimplePie_GCalendar();
 $rss->set_show_past_events(false);
-$rss->set_sort_ascending(true);
+$rss->enable_order_by_date(false);
 $rss->set_orderby_by_start_date(true);
 $rss->enable_cache(false);
 $rss->set_feed_url($feed);
 $rss->set_max_events($limit);
 $rss->init();
-
 $rss->handle_content_type();
   if($items = $rss->get_items()):?>
     <ul<?php echo isset($menu_class) ? ' class="'.$menu_class.'"':null;?> >
