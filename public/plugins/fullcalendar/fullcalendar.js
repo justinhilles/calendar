@@ -1442,12 +1442,7 @@ function _renderDaySegs(segs, rowCnt, view, minLeft, maxLeft, getRow, dayContent
 		html +=
 			"<div class='" + className + event.className.join(' ') + "' style='position:absolute;z-index:8;left:"+left+"px'>" +
 				"<a" + (event.url ? " href='" + htmlEscape(event.url) + "'" : '') + ">" +
-					(!event.allDay && seg.isStart ?
-						"<span class='fc-event-time'>" +
-							htmlEscape(formatDates(event.start, event.end, view.option('timeFormat'), options)) +
-						"</span>"
-					:'') +
-					"<span class='fc-event-title'>" + htmlEscape(event.title) + "</span>" +
+							"<img src=\"/wp-content/plugins/calendar/public/images/calendar.png\" />" +
 				"</a>" +
 				((event.editable || event.editable == undefined && options.editable) && !options.disableResizing && $.fn.resizable ?
 					"<div class='ui-resizable-handle ui-resizable-" + (rtl ? 'w' : 'e') + "'></div>"
