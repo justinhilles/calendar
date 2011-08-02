@@ -8,7 +8,7 @@
   $(function() {
     $('#calendar').fullCalendar({
       contentHeight: 154,
-			showNumbers : false,
+			weekMode: 'variable',
       events: $.fullCalendar.gcalFeed('<?php echo $feed;?>'),
       eventClick: function(event) {
         // opens events in a popup window
