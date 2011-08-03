@@ -1442,7 +1442,7 @@ function _renderDaySegs(segs, rowCnt, view, minLeft, maxLeft, getRow, dayContent
 		html +=
 			"<div class='" + className + event.className.join(' ') + "' style='position:absolute;z-index:8;left:"+left+"px'>" +
 				"<a" + (event.url ? " href='" + htmlEscape(event.url) + "'" : '') + ">" +
-							"<img src=\"/wp-content/plugins/calendar/public/images/calendar.png\" />" +
+							"<img src=\"/wp-content/plugins/calendar/public/images/calendar-dot.png\" />" +
 				"</a>" +
 				((event.editable || event.editable == undefined && options.editable) && !options.disableResizing && $.fn.resizable ?
 					"<div class='ui-resizable-handle ui-resizable-" + (rtl ? 'w' : 'e') + "'></div>"

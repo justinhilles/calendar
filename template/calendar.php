@@ -7,14 +7,14 @@
 <script type="text/javascript">
   $(function() {
     $('#calendar').fullCalendar({
-      contentHeight: 154,
+      contentHeight: 30,
 			weekMode: 'variable',
       events: $.fullCalendar.gcalFeed('<?php echo $feed;?>'),
       eventClick: function(event) {
         // opens events in a popup window
         window.open(event.url, 'gcalevent', 'width=700,height=600');
         return false;
-      },
+      }
     });
   });
 </script>
