@@ -2095,7 +2095,7 @@ function Agenda(element, options, methods) {
 			seg = segs[i];
 			event = seg.event;
 			eventElement = $(eventElements[i]); // faster than eq()
-			triggerRes = view.trigger('eventRender', event, event, eventElement);
+			triggerRes = view.trigger('eventRender', event, event, eventElement, seg);
 			if (triggerRes === false) {
 				eventElement.remove();
 			}else{

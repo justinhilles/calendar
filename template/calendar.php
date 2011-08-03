@@ -14,7 +14,13 @@
         // opens events in a popup window
         window.open(event.url, 'gcalevent', 'width=700,height=600');
         return false;
-      }
+      },
+	    eventRender: function(event, element, seg) {
+				if(seg.end.getMonth() == event._start.getMonth() || seg.start.getMonth() > event._start.getMonth())
+				{
+					element.hide();
+				}
+	    }
     });
   });
 </script>
