@@ -89,7 +89,7 @@ class GoogleCalendar
 	
 	public function addStylesheets()
 	{
-		wp_register_style('calendar', sprintf('%s/public/plugins/fullcalendar/fullcalendar.css', $this->PLUGINURL));
+		wp_register_style('calendar', '/wp-content/plugins/calendar/public/plugins/fullcalendar/fullcalendar.css');
 		wp_enqueue_style('calendar');
 	}
 	

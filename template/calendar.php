@@ -2,7 +2,7 @@
 <script type="text/javascript" src="<?php echo $this->getUrl(); ?>/public/plugins/fullcalendar/jquery/ui.core.js"></script>
 <script type="text/javascript" src="<?php echo $this->getUrl(); ?>/public/plugins/fullcalendar/jquery/ui.draggable.js"></script>
 <script type="text/javascript" src="<?php echo $this->getUrl(); ?>/public/plugins/fullcalendar/jquery/ui.resizable.js"></script>
-<script type="text/javascript" src="<?php echo $this->getUrl(); ?>/public/plugins/fullcalendar/fullcalendar.js"></script>
+<script type="text/javascript" src="<?php echo $this->getUrl(); ?>/public/plugins/fullcalendar/fullcalendar.1.5.1.js"></script>
 <script type="text/javascript" src="<?php echo $this->getUrl(); ?>/public/plugins/fullcalendar/gcal.js"></script>
 <script type="text/javascript">
   $(function() {
